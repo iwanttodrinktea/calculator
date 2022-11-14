@@ -1,0 +1,24 @@
+:root {
+    --dark: #484848;
+    --darker: #383839;
+    --darkest: #292932;
+    --purple: #4f1661;
+    --blue: #3135aa;
+    --white: #ffffff;
+}
+
+body {
+    display: flex;
+    background: var(--white);
+}
+
+main {
+    height: 600px;
+    width: 350px;
+    background:  var(--darkest);
+}
+
+.calculator {
+    margin: auto;  /*ここを中央寄せしたい*/
+}
+
