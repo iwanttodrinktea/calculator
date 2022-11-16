@@ -17,8 +17,18 @@
     <main>
         <div class="calculator">
             <div class="calculate-window">
-                <div class="current-expression"></div>
-                <div class="result"></div>
+                <!--現在の式-->
+                <input 
+                    type="text"
+                    class="current-expression"
+                    value="900+200"
+                    readonly
+                />
+                <!--式の結果-->
+                <input 
+                    class="result"
+                    readonly
+                />
             </div>
 
             <div class="buttons">
@@ -35,7 +45,7 @@
                 <button id="number">1</button>
                 <button id="number">2</button>
                 <button id="number">3</button>
-                <button id="operator">-</button>
+                <button id="operator">−</button>
                 <button id="number">0</button>
                 <button id="decimal-point">.</button>
                 <button id="equal">=</button>

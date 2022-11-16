@@ -2,10 +2,12 @@
     --dark: #424242;
     --darker: #383839;
     --darkest: #1f1f20;
-    --gray: #535353;
+    --light-purple: #6a5a6d;
     --purple: #4f1661;
     --blue: #3135aa;
-    --light-blue: #9be4ff;
+    --darkblue: #302f40;
+    --darkerblue: #41414e;
+    --light-blue: #c0eeff;
     --white: #ffffff;
 }
 
@@ -19,29 +21,49 @@ body {
 
 .calculator {
     width: 330px;
-    height: 600px;
+    height: 590px;
     background: var(--darkest);
     border-radius: 20px;  /*本体の角丸く*/
-    margin: 0 auto;  /*中央に配置*/
+    margin: 40px auto;  /*中央に配置*/
     /*子要素を中央に配置*/
     display: flex;
     justify-content: center;
     flex-wrap: wrap;    /*要素がいっぱいになったら改行*/
 }
 
+input {
+    border: none;
+    background: none;
+}
+
 .calculate-window {
     width: 300px;
-    height: 200px;
-    background: var(--dark);
+    height: 170px;
+    background: var(--darkblue);
     border-radius: 10px;  /*計算結果の窓部分の角を丸く*/
-    margin-top: 10px;
+    margin-top: 20px;
+}
+
+.current-expression {
+    text-align: right;  /*テキストを右寄せ*/
+    width: 290px;
+    font-size: 50px;
+    color: var(--white);
+    margin-top: 50px;
+}
+
+.result {
+    width: 290px;
+    font-size: 40px;
+    color: var(--white);
+    margin-top: 0;
 }
 
 .buttons {
     width: 300px;
-    height: 375px;
+    height: 385px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     /*子要素を均等に配置*/
     display: flex;
     justify-content: space-between;
@@ -49,6 +71,7 @@ body {
 }
 
 .buttons button {
+    cursor: pointer;    /*ボタンを上にカーソルを置いたら指になる*/
     font-size: 30px;
     width: 70px;
     height: 70px;
@@ -56,35 +79,43 @@ body {
     color: var(--white);    /*文字の色*/
 }
 
+.buttons button:hover { /*ボタンの上にカーソルが置かれている時*/
+    opacity: 0.8;
+}
+
+.buttons button:active {    /*ボrンが押された時*/
+    opacity: 0.6;
+}
+
 #ac {
-    width: 140px;
+    width: 145px;
     background-color: var(--purple);    /*ボタンの色*/
     border-radius: 10px;
 }
 
 #ce {
-    width: 140px;
-    background-color: var(--gray);    /*ボタンの色*/
+    width: 145px;
+    background-color: var(--light-purple);    
     border-radius: 10px;
 }
 
 #number {
-    background-color: var(--darker);    /*ボタンの色*/
+    background-color: var(--darker);    
     border-radius: 50%; /*ボタンを丸く*/
 }
 
 #decimal-point {
-    background-color: var(--darker);    /*ボタンの色*/
+    background-color: var(--darker);    
     border-radius: 50%;
 }
 
 #operator {
-    background-color: var(--gray);    /*ボタンの色*/
+    background-color: var(--darkerblue);    
     border-radius: 50%;
 }
 
 #equal {
-    background-color: var(--blue);    /*ボタンの色*/
+    background-color: var(--blue);   
     border-radius: 50%;
 }
 
