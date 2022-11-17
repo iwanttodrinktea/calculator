@@ -15,41 +15,41 @@
 <body>
     
     <main>
-        <div class="calculator">
-            <div class="calculate-window">
+        <div id="calculator">
+            <div id="calculate-window">
                 <!--現在の式-->
                 <input 
                     type="text"
-                    class="current-expression"
-                    value="900+200"
+                    id="current-expression"
+                    value=""
                     readonly
                 />
                 <!--式の結果-->
                 <input 
-                    class="result"
+                    id="result"
                     readonly
                 />
             </div>
 
             <div class="buttons">
-                <button id="ac">AC</button>
-                <button id="ce">CE</button>
-                <button id="number">7</button>
-                <button id="number">8</button>
-                <button id="number">9</button>
-                <button id="operator">÷</button>
-                <button id="number">4</button>
-                <button id="number">5</button>
-                <button id="number">6</button>
-                <button id="operator">×</button>
-                <button id="number">1</button>
-                <button id="number">2</button>
-                <button id="number">3</button>
-                <button id="operator">−</button>
-                <button id="number">0</button>
-                <button id="decimal-point">.</button>
-                <button id="equal">=</button>
-                <button id="operator">+</button>
+                <button class="ac" onclick="clickAc()">AC</button>
+                <button class="ce" onclick="clickCe()">CE</button>
+                <button class="number" onclick="append(7)">7</button>
+                <button class="number" onclick="append(8)">8</button>
+                <button class="number" onclick="append(9)">9</button>
+                <button class="operator" onclick="append('/')">÷</button>
+                <button class="number" onclick="append(4)">4</button>
+                <button class="number" onclick="append(5)">5</button>
+                <button class="number" onclick="append(6)">6</button>
+                <button class="operator" onclick="append('*')">×</button>
+                <button class="number" onclick="append(1)">1</button>
+                <button class="number" onclick="append(2)">2</button>
+                <button class="number" onclick="append(3)">3</button>
+                <button class="operator" onclick="append('-')">−</button>
+                <button class="number" onclick="append(0)">0</button>
+                <button class="decimal-point" onclick="appendt('.')">.</button>
+                <button class="equal" onclick="calculate()">=</button>
+                <button class="operator" onclick="append('+')">+</button>
             </div> 
         </div>
     </main>

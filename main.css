@@ -19,7 +19,7 @@ body {
     background: var(--light-blue);
 }
 
-.calculator {
+#calculator {
     width: 330px;
     height: 590px;
     background: var(--darkest);
@@ -36,7 +36,7 @@ input {
     background: none;
 }
 
-.calculate-window {
+#calculate-window {
     width: 300px;
     height: 170px;
     background: var(--darkblue);
@@ -44,7 +44,7 @@ input {
     margin-top: 20px;
 }
 
-.current-expression {
+#current-expression {
     text-align: right;  /*テキストを右寄せ*/
     width: 290px;
     font-size: 50px;
@@ -52,7 +52,7 @@ input {
     margin-top: 50px;
 }
 
-.result {
+#result {
     width: 290px;
     font-size: 40px;
     color: var(--white);
@@ -73,48 +73,51 @@ input {
 .buttons button {
     cursor: pointer;    /*ボタンを上にカーソルを置いたら指になる*/
     font-size: 30px;
-    width: 70px;
     height: 70px;
     border: none;   /*ボタンを枠線を消す*/
     color: var(--white);    /*文字の色*/
 }
 
 .buttons button:hover { /*ボタンの上にカーソルが置かれている時*/
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .buttons button:active {    /*ボrンが押された時*/
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
-#ac {
+.ac {
     width: 145px;
     background-color: var(--purple);    /*ボタンの色*/
     border-radius: 10px;
 }
 
-#ce {
+.ce {
     width: 145px;
     background-color: var(--light-purple);    
     border-radius: 10px;
 }
 
-#number {
+.number {
+    width: 70px;
     background-color: var(--darker);    
     border-radius: 50%; /*ボタンを丸く*/
 }
 
-#decimal-point {
+.decimal-point {
+    width: 70px;
     background-color: var(--darker);    
     border-radius: 50%;
 }
 
-#operator {
+.operator {
+    width: 70px;
     background-color: var(--darkerblue);    
     border-radius: 50%;
 }
 
-#equal {
+.equal {
+    width: 70px;
     background-color: var(--blue);   
     border-radius: 50%;
 }
