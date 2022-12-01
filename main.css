@@ -53,8 +53,9 @@ input {
 }
 
 #result {
+    text-align: right;
     width: 290px;
-    font-size: 40px;
+    font-size: 35px;
     color: var(--white);
     margin-top: 0;
 }

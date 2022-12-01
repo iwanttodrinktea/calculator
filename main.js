@@ -3,6 +3,7 @@ const result = document.querySelector("#result");
 let countOpe = 0;
 let checkNum
 let num1, num2;
+let flag = false;   //計算
 
 // all clear
 function clickAc() {
@@ -72,37 +73,84 @@ function checkDeci() {
     }
 }
 
+function change_array(i, reg_num, reg_ope, pos) {
+    reg_num = reg_num.filter(v => v);   // null削除
+    reg_ope = reg_ope.slice(i, 1);  // 計算が終了した符号削除
+    pos++;
+
+    return reg_num, reg_ope, pos;
+}
+
 // calculate
 function calculate() {
     try {
-        // Function()本当は良くない
         const ex = current.value.replaceAll('×','*').replaceAll('÷','/');
         // 数値の配列
         const not_num = ex.match(/[0-9]+\.[0-9]+\./g);
         if (not_num) {
             // 小数点が複数含まれている数値があるとき
             console.log("error");
+            flag = True;
         } else {
             // 計算できる式が入力された時
-            const reg_num = ex.match(/[0-9]+\.?[0-9]*/g);
-            const reg_ope = ex.match(/[\+\-\*\/]/g);
-            console.log(reg_num,reg_ope);
+            let reg_num = ex.match(/[0-9]+\.?[0-9]*/g);
+            let reg_ope = ex.match(/[\+\-\*\/]/g);
+            let num1, num2, pos = 0;
 
-            if (isNaN(cal)) {
-                current.value = cal();
-            } else if (cal == Infinity) {
-                current.value = 'Infinity';
-            } else {
-                current.value = 'Error';
-            }
+            for (let i=0; i<reg_ope.length; i++) {
+                // 掛け算、割算を左から順に行う
+                if (reg_ope[i-pos] === '*') {
+                    // 掛け算を行い、元の配列の前の数字の位置に代入　後ろにはnull
+                    num1 = Number(reg_num[i-pos]);
+                    num2 = Number(reg_num[i+1-pos]);
+                    reg_num[i-pos] = num1 * num2;
+                    reg_num[i+1-pos] = null; 
+                    // nullの部分を詰め、'*', '/'　の符号をリストから削除
+                    reg_num = reg_num.filter(v => v);   // null削除
+                    reg_ope.splice(i-pos, 1);  // 計算が終了した符号削除
+                    pos++;
+                } else if (reg_ope[i-pos] === '/') {
+                    // 割算を行い、元の配列の前の数字の位置に代入　後ろにはnull
+                    num1 = Number(reg_num[i-pos]);
+                    num2 = Number(reg_num[i+1-pos]);
+                    reg_num[i-pos] = num1 / num2; 
+                    reg_num[i+1-pos] = null; 
+                    // nullの部分を詰め、'*', '/'　の符号をリストから削除
+                    reg_num = reg_num.filter(v => v);   // null削除
+                    reg_ope.splice(i-pos, 1);  // 計算が終了した符号削除
+                    pos++;
+                }
+            } 
+
+            pos = 0; // 初期化
+            for (let i=0; i<reg_ope.length; i++) {
+                // 足し算、引き算を左から順に行う
+                if (reg_ope[i-pos] === '+') {
+                    // 足し算を行い、元の配列の前の数字の位置に代入　後ろにはnull
+                    num1 = Number(reg_num[i-pos]);
+                    num2 = Number(reg_num[i+1-pos]);
+                    reg_num[i-pos] = num1 + num2;
+                    reg_num[i+1-pos] = null; 
+                    // nullの部分を詰め、'*', '/'　の符号をリストから削除
+                    reg_num = reg_num.filter(v => v);   // null削除
+                    reg_ope.splice(i-pos, 1);  // 計算が終了した符号削除
+                    pos++;
+                } else if (reg_ope[i-pos] === '-') {
+                    // 割算を行い、元の配列の前の数字の位置に代入　後ろにはnull
+                    num1 = Number(reg_num[i-pos]);
+                    num2 = Number(reg_num[i+1-pos]);
+                    reg_num[i-pos] = num1 - num2; 
+                    reg_num[i+1-pos] = null; 
+                    // nullの部分を詰め、'*', '/'　の符号をリストから削除
+                    reg_num = reg_num.filter(v => v);   // null削除
+                    reg_ope.splice(i-pos, 1);  // 計算が終了した符号削除
+                    pos++;
+                }
+            } 
+            result.value = current.value;
+            current.value = reg_num[0];
         }
     } catch (error){
         console.error(error);
     }
 }
-
-
-
-//moji→数値　number
-//正規化で数値と演算子を取り出す
-//for文 for文で計算
