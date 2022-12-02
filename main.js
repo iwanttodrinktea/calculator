@@ -58,10 +58,12 @@ function append(s) {
 function checkOpe() {
     flag = false;
     if (current.value === "Infinity" || current.value === "Error") {
+        // 表示がInfinity or Errorの状態で演算子が入力された時、入力を初期化
         result.value = current.value;
         current.value = '';
     }
     if (current.value) {
+        // 演算子が連続して入力された場合、最新の演算子に置き換え
         before = current.value.slice(-1);
         if (before==='+' || before==='-' || before==='×' || before==='÷') {
             current.value = current.value.slice(0,-1);
@@ -73,10 +75,11 @@ function checkOpe() {
 }
 
 function checkDeci() {
+    // 小数点が入力された時
     if (current.value) {
         before = current.value.slice(-1);
         if (before==='+' || before==='-' || before==='×' || before==='÷') {
-            // 計算記号の後にすぐ
+            // 演算子の後にすぐの場合、0を加える
             current.value += 0;
         } else if (before==='.') {
             current.value = current.value.slice(0,-1);
@@ -87,14 +90,14 @@ function checkDeci() {
     }
 }
 
-// calculate
 function calculate() {
+    // =が押されたら計算
     try {
-        const ex = current.value.replaceAll('×','*').replaceAll('÷','/');
-        // 数値の配列
-        const not_num = ex.match(/[0-9]+\.[0-9]+\./g);
+        const ex = current.value.replaceAll('×','*').replaceAll('÷','/');   // 計算するために置き換え
+        
+        const not_num = ex.match(/[0-9]+\.[0-9]+\./g);  // 数値の配列
         if (not_num) {
-            // 小数点が複数含まれている数値があるとき
+            // 小数点が複数含まれている数値があるとき、Error表示
             current.value= "Error";
         } else {
             // 計算できる式が入力された時
@@ -102,7 +105,6 @@ function calculate() {
             let reg_ope = ex.match(/[\+\-\*\/]/g);
             let num1, num2, pos = 0;
             if (reg_ope) {
-                // 計算を行う
                 var repeat = reg_ope.length;
                 for (let i=0; i<repeat; i++) {
                     // 掛け算、割算を左から順に行う
@@ -182,8 +184,3 @@ function calculate() {
         current.value = "Error";
     }
 }
-
-
-
-
-// かける0, わる0のとき
